@@ -1,0 +1,9 @@
+[submodule "eigen"]
+	path = src/ext/eigen
+	url = https://gitlab.com/libeigen/eigen
+[submodule "tinyobj"]
+	path = src/ext/tinyobj
+	url = https://github.com/tinyobjloader/tinyobjloader
+[submodule "fcpw"]
+	path = src/ext/fcpw
+	url = https://github.com/rohan-sawhney/fcpw
