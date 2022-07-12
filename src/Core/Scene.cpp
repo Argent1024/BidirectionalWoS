@@ -1,8 +1,8 @@
 #include "Scene.h"
 
-PoissonEquation BoundaryCompare(bool importancesampling)
+PoissonEquation BoundaryScene(bool importancesampling)
 {
-	string file = "../exampleScene/circle_boundary.obj";
+	string file = "../examples/scenes/circle_boundary.obj";
 	ptrSourceTerm source = make_shared<EmptySource>();
 
 	auto bd = Boundary::ReadObjCurve(file);
@@ -23,13 +23,13 @@ PoissonEquation BoundaryCompare(bool importancesampling)
 	ptrBoundary boundary = make_shared<SegmentBoundaryNew>(points, ColorSet, 4, 12, importancesampling);
 	assert(boundary->HasBoundaryValue() == true);
 	assert(source->HasSource() == false);
-	std::cout << "Begin rendering" << std::endl;
+	
 	return PoissonEquation(boundary, source);
 }
 
-PoissonEquation SourceCompare()
+PoissonEquation SourceScene()
 {
-	string file = "../exampleScene/curve_boundary.obj";
+	string file = "../examples/scenes/curve_boundary.obj";
 	auto bd = Boundary::ReadObjCurve(file);
 	auto& points = bd.points;
 	
@@ -43,13 +43,13 @@ PoissonEquation SourceCompare()
 	ptrSourceTerm source = make_shared<DiskSource>(spheres);
 	ptrBoundary   boundary = make_shared<Boundary>(points);
 	assert(boundary->HasBoundaryValue() == false);
-	std::cout << "Begin rendering" << std::endl;
+	
 	return PoissonEquation(boundary, source);
 }
 
 PoissonEquation PointSourceInSphere()
 {
-	auto bd = Boundary::ReadObjCurve("../exampleScene/curve_boundary.obj");
+	auto bd = Boundary::ReadObjCurve("../examples/scenes/curve_boundary.obj");
 
 	auto& points = bd.points;
 	auto& index = bd.index;
@@ -62,47 +62,6 @@ PoissonEquation PointSourceInSphere()
 	assert(boundary->HasBoundaryValue() == false);
 	return PoissonEquation(boundary, source);
 }
-
-
-// PoissonEquation SinCurve()
-// {
-// 	ptrSourceTerm source = make_shared<EmptySource>();
-
-
-// 	Vec3 a = Vec3{ 37, 49, 239 } / 255;
-// 	Vec3 b = Vec3{ 242, 202, 25 } / 255;
-// 	Vec3 c = Vec3{ 255, 0, 189 } / 255;
-// 	Vec3 d = Vec3{ 0, 87, 233 } / 255;
-// 	Vec3 e = Vec3{ 135, 233, 17 } / 255;
-// 	Vec3 f = Vec3{ 225, 24, 69 } / 255;
-
-// 	double intensity = 1.0;
-// 	vector<Vec3> ColorSet = {
-// 		intensity * a,
-// 		intensity * b,
-// 		intensity * c,
-// 		intensity * d,
-// 		intensity * e,
-// 		intensity * f
-// 	};
-
-// 	vector<Vec3> frontColor;
-
-// 	auto bd = Boundary::ReadObjCurve(WorkDirectory + "curve3.obj");
-// 	auto& points = bd.points;
-// 	auto& index = bd.index;
-
-// 	for (int i = 0; i < points.size(); ++i)
-// 	{
-// 		frontColor.push_back(ColorSet[i / 8 % ColorSet.size()]);
-// 	}
-
-// 	ptrBoundary boundary = make_shared<SegmentBoundaryNew>(points, frontColor, frontColor, index, false);
-// 	assert(boundary->HasBoundaryValue() == true);
-// 	assert(source->HasSource() == false);
-// 	std::cout << "Begin rendering" << std::endl;
-// 	return PoissonEquation(boundary, source);
-// }
 
 
 void AddLine(std::vector<Vec2>& points, std::vector<int>& index, std::vector<Vec3>& frontColor, std::vector<Vec3>& backColor,

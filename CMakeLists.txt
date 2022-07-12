@@ -27,19 +27,17 @@ set(srcs_file
 	"src/Core/Boundary.h"
 	"src/Core/PDE.h"
     "src/Core/SolverWoS.h" 
-	"src/Core/Scene.h" "src/Core/Scene.cpp" 
+	"src/Core/Scene.h" 
+	"src/Core/Scene.cpp" 
 	"src/Core/Boundary.cpp"  
  )
 
- 
-add_executable(ForwardWoS 
-	"src/ForwardWoS.cpp"
-	${srcs_file}  
-)
 
-add_executable(ReverseWoS
-    "src/ReverseWoS.h"
-	"src/ReverseWoS.cpp"
+add_executable(BidirectionalWoS
+    "src/main.cpp"
+	"src/ReverseWoS.h"
+	"src/ForwardWoS.h"
+	"src/FinalGatherWoS.h"
 	${srcs_file}
 )
 
@@ -52,10 +50,7 @@ add_executable(ReverseWoS
 # Add fcpw to the project
 add_subdirectory(src/ext/fcpw)
 
-target_link_libraries(ForwardWoS fcpw)
-target_include_directories(ForwardWoS PUBLIC ${FCPW_EIGEN_INCLUDES})
-target_include_directories(ForwardWoS PUBLIC ${FCPW_ENOKI_INCLUDES})
 
-target_link_libraries(ReverseWoS fcpw)
-target_include_directories(ReverseWoS PUBLIC ${FCPW_EIGEN_INCLUDES})
-target_include_directories(ReverseWoS PUBLIC ${FCPW_ENOKI_INCLUDES})
+target_link_libraries(BidirectionalWoS fcpw)
+target_include_directories(BidirectionalWoS PUBLIC ${FCPW_EIGEN_INCLUDES})
+target_include_directories(BidirectionalWoS PUBLIC ${FCPW_ENOKI_INCLUDES})

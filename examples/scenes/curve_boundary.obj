@@ -1,6 +1,5 @@
 # Blender v3.0.0 OBJ File: 'curve.blend'
 # www.blender.org
-mtllib curve.mtl
 o BezierCurve_BezierCurve.002
 v -0.665108 0.000000 -0.248580
 v -0.685604 0.000000 -0.242872

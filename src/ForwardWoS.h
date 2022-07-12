@@ -2,17 +2,14 @@
 #include "Core/SolverWoS.h"
 #include "Core/Scene.h"
 
-class ForwardWoS : public Solver
+class ForwardWoSSolver : public Solver
 {
 public:
 	int PixelSamples = 1;
 	bool ImportanceSampleSource = true;
 
 	string GetName() override { 
-		std::stringstream s1;
-		s1 << std::fixed << std::setprecision(1) << std::log10(m_Epsilon);
-		std::string ep = s1.str();
-		return "ForwardWoS"+ string("_Epsilon") + ep + string("_Spp") + to_string(PixelSamples);
+		return "ForwardWoS";
 	}
 
 	void Solve(const PoissonEquation& equation, ImageBuffer* buffer, int id) override

@@ -1,6 +1,5 @@
 #pragma once
 #include "Core/SolverWoS.h"
-#include "Core/Scene.h"
 
 
 class ReverseWoSSolver : public Solver
@@ -12,23 +11,7 @@ public:
 
 	string GetName() override 
 	{ 
-		// https://stackoverflow.com/questions/29200635/convert-float-to-string-with-precision-number-of-decimal-digits-specified
-		std::stringstream s1;
-		s1 << std::fixed << std::setprecision(1) << std::log10(m_Epsilon);
-		std::string ep = s1.str();
-
-		std::stringstream s2;
-		s2 << std::fixed << std::setprecision(1) << std::log10(m_Xi);
-		std::string xi = s2.str();
-
-		std::stringstream s3;
-		s3 << std::fixed << std::setprecision(1) << std::log10(BoundarySamples);
-		std::string sample = s3.str();
-
-		return "./Reverse" + 
-			string("_Epsilon") + ep + 
-			string("_Xi") + xi +
-			string("_Samples") + sample;
+		return "ReverseWoS";
 	}
 
 	void Solve(const PoissonEquation& equation, ImageBuffer* buffer, int id) override
