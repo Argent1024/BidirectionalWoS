@@ -1,6 +1,5 @@
 # Blender v3.0.0 OBJ File: ''
 # www.blender.org
-mtllib curve1.mtl
 o curve1
 v 0.000000 0.000000 -0.953615
 v 0.046792 0.000000 -0.952466
