@@ -125,7 +125,7 @@ public:
 		CalculateEnergy();
 	}
 
-	bool HasBoundaryValue() const { return true; }
+	bool HasBoundaryValue() const override { return true; }
 
 	virtual Vec3 BoundaryValue(const Vec2& p) const override
 	{

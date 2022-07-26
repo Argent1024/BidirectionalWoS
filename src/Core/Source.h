@@ -84,7 +84,7 @@ public:
 	}
 
 	// HACK Add a wave 
-	Vec3 Source(const Vec2& p) const
+	Vec3 Source(const Vec2& p) const override
 	{
 		double r = (p - Vec2{0.5, 0.0}).norm();
 		double b = (p + Vec2{ 0.5, 0.0 }).norm();
